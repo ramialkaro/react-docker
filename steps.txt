@@ -1,0 +1,39 @@
+initial Dockerfile
+
+Optionally creata a .dockerignore file to exclude folders and files ffrom the Docker
+process. For exmple, the node_modules don't need to be included for the docker
+image, becuase they will be installed in the process with npm install (see Dockerfile).
+Therefore, the content of the .dockerignore file could be:
+
+node_modules
+
+Install docker hub to machine
+
+Next, either login to Docker hub or create new an account. Afterward, you should 
+have a Docker hub username which can be used to build Docker image.
+
+To login --> docker login --< fill your username and password
+
+docker build -t <username>/react-docker .
+
+
+To see images that you have it--< use 
+
+docker images
+
+
+docker run --name my-react-app -p 4680:3000 -d <username>/my-react-app
+
+To run a Docker container with a specific name, mapping of two ports and a Docker
+image. Even though the Dockerfile defines a specific port, we can redirect this 
+to a custom port for this particular Docker container. After creating and 
+running the Docker container based on the Docker image, we should be able to
+list all Docker containers:
+
+docker ps 
+
+
+Before we can visit our application in the browser, we need to 
+find out the IP address of our running Docker engine:
+
+docker-machine ip default
